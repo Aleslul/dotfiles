@@ -1,1 +1,1 @@
-This is my dotfiles.
+Those are my dotfiles.
