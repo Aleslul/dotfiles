@@ -17,6 +17,7 @@
 
 ## Dependencies
 - eww > For widgets
+- Zen Browser > A cool firefox based browser
 - swaync > For notifications
 - rofi > The application launcher
 - waybar > The status bar
