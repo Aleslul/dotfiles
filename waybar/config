@@ -1,3 +1,6 @@
+//Hello there, Im aleslul and this is my waybar configuration, some things like the custom/power or clock are eww widgets
+// so if you wanna see the configuration those menus, go to: .config/eww
+
 {
     "layer": "top",
     "width": 1800,
