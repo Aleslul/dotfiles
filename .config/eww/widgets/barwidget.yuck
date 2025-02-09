@@ -1,0 +1,52 @@
+;; VOLUME AND BRIGHTNESS CONTROL BARS
+
+(defwidget volume []
+  (box :class "scales" :orientation "h" :valign "center" :halign "center" :spacing 0 :space-evenly "false"
+    (scalecenter :flipped "false" :orientation "h" :label ""
+        :value "${volume}"
+        :onchange "pamixer --set-volume {}"
+    )
+  )
+)
+
+(defwindow volumewidget
+  :monitor 0
+  :exclusive "false"
+  :windowtype "normal"
+  :stacking "fg"
+  :geometry (geometry :x "0"
+                      :y "10"
+                      :width "310px"
+                      :height "60px"
+                      :anchor "center top")
+  (volume)
+)
+
+(defwindow brightwidget
+  :monitor 0
+  :exclusive "false"
+  :windowtype "normal"
+  :stacking "fg"
+  :geometry (geometry :x "0"
+                      :y "10"
+                      :width "310px"
+                      :height "60px"
+                      :anchor "center top")
+  (bright)
+)
+
+(defwidget bright []
+  (box :class "scales" :orientation "h" :valign "center" :halign "center" :spacing 0 :space-evenly "false"
+    (scalecenter :flipped "false" :orientation "h" :label ""
+      :value "${brightness}"
+      :onchange "brightnessctl set {}%"
+    )
+  )
+)
+
+;;(scalecenter :orientation "v" :label ""
+;;:value mic_percent
+;;:onchange "amixer -D pulse sset Capture {}%" 
+;;:max 100
+;;:min 0
+;;)

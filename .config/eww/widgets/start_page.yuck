@@ -1,0 +1,205 @@
+;;FILTER FOR THE BACKGROUND
+
+(defwindow back
+    :monitor 0
+    :exclusive "false"
+    :windowtype "desktop"
+    :focusable "false"
+    :stacking "bottom"
+    :geometry (geometry :x 0
+                        :y 0
+                        :width "1920px"
+                        :height "1080px"
+                        :anchor "center center")
+    :class background
+    (box :class "backgroundcolor")
+)
+
+
+;; THE USER WINDOW
+
+(defwindow user
+    :monitor 0
+    :exclusive "false"
+    :windowtype "normal"
+    :stacking "overlay"
+    :focusable "true"
+    :geometry (geometry :x "420"
+                        :y "0"
+                        :width "390px"
+                        :height "500px"
+                        :anchor "left center")
+    :class startpage
+    (page)       
+)
+
+(defwidget page []
+    (box :class "startwrap" :orientation "h" :spacing 0
+        (centerbox :class "startwelcome" :orientation "v" :space-evenly "false"
+            (box :class "userinfo" :orientation "h" :space-evenly "true" :spacing 5 
+                (image :class "pfp" :valign "start" :style `background-image: url("/home/aleslul/Imágenes/aleslul.jpeg")` )
+                (box :orientation "v" :space-around "true" :valign "center" :spacing 5
+                    (label :class "welcometext" :text "󰣇 ${username}" :halign "start" :valign "center")
+                    (label :text "${username}@${hostname}" :halign "center" :halign "start" :valign "start" :style "color: #F7768E")
+                    (label :text "Bienvenido de nuevo!" :halign "start" :valign "start" :halign "start" :style "color: #7AA2F7")
+                )
+            )
+            (box :class "raper" :orientation "h" :spacing 10
+                (box :class "graphs" :orientation "v" :spacing 5
+                    (circular-progress :class "cpuGraph" :value cpu-raw :thickness 10 :clockwise "true" 
+                        (box :orientation "v" :space-evenly "false" :halign "center" :valign "center"
+                            (label :class "iconGraph" :text "")
+                            (label :class "labelGraph" :text "${cpu}")
+                        )
+                    )
+                    (circular-progress :class "tempGraph" :value temp :thickness 10 :clockwise "true"
+                        (box :orientation "v" :space-evenly "false" :halign "center" :valign "center"
+                            (label :class "iconGraph" :text "${temp-icon}")
+                            (label :class "labelGraph" :text "${temp}ºC")
+                        )
+                    )
+                )
+                (box :orientation "v" :spacing 10 :space-evenly "false"
+                    (box :class "directories" :orientation "v" :space-evenly "false" :spacing 5 
+                        (eventbox :class "dirs" :onclick "bash $HOME/.config/eww/scripts/open_folders.sh --dev &" :orientation "h" :halign "start" 
+                            (label :text "󰉎 Desarrollo")    
+                        )
+                        (eventbox :class "dirs" :onclick "bash $HOME/.config/eww/scripts/open_folders.sh --docs &" :halign "start" 
+                            (label :text "󰉌 Documentos")
+                        )
+                        (eventbox :class "dirs" :onclick "bash $HOME/.config/eww/scripts/open_folders.sh --down &" :halign "start" 
+                            (label :text "󰉍 Descargas")
+                        )
+                        (eventbox :class "dirs" :onclick "bash $HOME/.config/eww/scripts/open_folders.sh --uni &" :halign "start" 
+                            (label :text "󰲂 Universidad")
+                        )
+                        (eventbox :class "dirs" :onclick "bash $HOME/.config/eww/scripts/open_folders.sh --img &" :halign "start" 
+                            (label :text "󰉏 Imágenes")
+                        )
+                        (eventbox :class "dirs" :onclick "bash $HOME/.config/eww/scripts/open_folders.sh --config &" :halign "start" 
+                            (label :text "󱧼 ~/.config/")
+                        )
+                        (eventbox :class "dirs" :onclick "bash $HOME/.config/eww/scripts/open_folders.sh --local &" :halign "start" 
+                            (label :text "󱧼 ~/.local/")
+                        )
+                    )
+                    (box :class "buttonswraper" :orientation "h" :space-evenly "true"
+                        (button :class "test2" :halign "center" :onclick "/home/aleslul/.webcatalog/Canva/Canva &" "")
+                        (button :class "test2" :halign "center" :onclick "/home/aleslul/.webcatalog/Notion/Notion &" "")
+                        (button :class "test3" :halign "center" :onclick "thunar &" "")
+                    )
+                )
+            )
+            (powermenu)
+        )
+    )
+)
+
+
+;;THE SCROLL WINDOW LMAO
+
+(defwindow scroll
+    :monitor 0
+    :exclusive "false"
+    :windowtype "normal"
+    :stacking "fg"
+    :focusable "true"
+    :geometry (geometry :x "420"
+                        :y "0"
+                        :width "680px"
+                        :height "500px"
+                        :anchor "right center")
+    :class startpage
+    (launcher)
+) 
+
+(defwidget launcher []
+    (box :class "launcher" :orientation "v" :spacing 5
+        (centerbox :orientation "v" :halign "start" :valign "start" :spacing 40 
+            (box :orientation "v" :space-evenly "false" :style "margin: 20px 0px"
+                (eventbox :class "eventScrollLabel" :halign "start" :valign "start" :onclick "" 
+                    (label :class "title" :text "PROGRAMACIÓN 󰏌 ")
+                )
+                (box :class "scrollButtonWrap" :spacing 20 :orientation "h" :space-evenly "false"
+                    (button :class "scrollButton" :onclick "bash $HOME/.config/eww/scripts/open_apps.sh 2 code" "󰨞 VS Code")
+                    (button :class "scrollButton" :onclick "bash $HOME/.config/eww/scripts/open_apps.sh 2 netbeans" " NetBeans")
+                    (button :class "scrollButton" :onclick "bash $HOME/.config/eww/scripts/open_apps.sh 3 android-studio " "󰀴 Android Studio")
+                    (button :class "scrollButton" :onclick "alacritty &" "  Alacritty")
+                    (button :class "scrollButton" :onclick "spotify &" " Spotify")
+                )
+            )
+            (box :orientation "v" :space-evenly "false" :style "margin: 20px 0px"
+                (eventbox :class "eventScrollLabel" :halign "start" :valign "start" :onclick "" 
+                    (label :class "title" :text "VIDEOJUEGOS 󰏌 ")
+                )
+                (box :class "scrollButtonWrap" :spacing 20 :orientation "h" :space-evenly "false"
+                    (button :class "scrollButton" :onclick "bash $HOME/.config/eww/scripts/open_apps.sh 2 steam" " Steam")
+                    (button :class "scrollButton" :onclick "bash $HOME/.config/eww/scripts/open_apps.sh 2 heroic" "󱎓 Heroic Launcher")
+                    (button :class "scrollButton" :onclick "discord &" "  Discord")
+                    (button :class "scrollButton" :onclick "spotify &" " Spotify")
+                )
+            )
+            (box :orientation "v" :space-evenly "false" :style "margin: 20px 0px"
+                (eventbox :class "eventScrollLabel" :halign "start" :valign "start" :onclick "" 
+                    (label :class "title" :text "REDES SOCIALES 󰏌 ")
+                )
+                (box :class "scrollButtonWrap" :spacing 20 :orientation "h" :space-evenly "false"
+                    (button :class "scrollButton" :onclick "/home/aleslul/.webcatalog/WhatsApp/WhatsApp &" " WhatsApp")
+                    (button :class "scrollButton" :onclick "" " Instagram")
+                    (button :class "scrollButton" :onclick "discord &" "  Discord")
+                    (button :class "scrollButton" :onclick "" "󰠖 4Chan")
+                    (button :class "scrollButton" :onclick "bash $HOME/.config/eww/scripts/open_apps.sh 1 zen-browser" "󰈹 Zen Browser")
+                )
+                (box :class "scrollButtonWrap" :spacing 20 :orientation "h" :space-evenly "false"
+                    (button :class "scrollButton" :onclick "bash $HOME/.config/eww/scripts/open_apps.sh 3 /home/aleslul/.webcatalog/Notion/Notion &" " Notion")
+                    (button :class "scrollButton" :onclick "spotify &" " Spotify")
+                )
+            )
+        )
+    )
+)
+
+
+;; THIS IS THE BAR U MFKR
+
+(defwindow initialbar
+    :monitor 0
+    :exclusive "false"
+    :focusable "false"
+    :windowtype "toolbar"
+    :stacking "overlay"
+    :geometry (geometry :x "0"
+                        :y "200px"
+                        :width "1080px"
+                        :height "50px"
+                        :anchor "top center")
+    (centerbox :class "bar" :orientation "h" :space-evenly "false"
+        (topwidget)
+        (middlewidget)
+        (bottomwidget)
+    )
+)
+
+(defwidget topwidget [] 
+    (box :class "topwidgetBar" :orientation "h" :spacing 5 :halign "start" :valign "center" :space-evenly "false"
+        (button :class "logoutBar" :halign "center" :valign "center" :onclick "eww close-all" "󰈆")
+        (box :class "hour" :orientation "h" :spacing 10 :halign "center" :valign "center"
+            (systray :spacing 10 :orientation "h" :icon-size 15 :prepend-new "false")
+        )
+    )
+)
+
+(defwidget middlewidget []
+    (box
+        (label :text " ")
+    )
+)
+
+(defwidget bottomwidget []
+    (box :class "bottomwidgetBar" :orientation "h" :spacing 5 :halign "end" :valign "center"
+        (box :class "weather" :orientation "h" :space-evenly "false"
+            (label :class "iconWeather" :style "color: ${colorWeather}"  :text "${iconWeather} ")
+            (label :class "labelWeather" :text "${labelWeather}")
+        )
+    )
+)

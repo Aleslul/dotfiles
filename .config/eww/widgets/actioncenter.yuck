@@ -1,0 +1,188 @@
+(defwindow actioncenter
+  :monitor 0
+  :exclusive "false"
+  :windowtype "normal"
+  :stacking "fg"
+  :geometry (geometry :x "10"
+                      :y "10"
+                      :width "300px"
+                      :height "100px"
+                      :anchor "top left")
+  :reserve (struts :side "right" :distance "4%")
+    (centerbox :orientation "v"
+      (topcenter)
+      (middlecenter)
+      (bottomcenter)
+    )
+)
+
+
+;;WIGETS FOR ACTIONCENTER
+(defwidget topcenter []
+  (box :class "topcenter" :orientation "v" :halign "start" :spacing 10 :space-evenly "false"
+    (box :class "userinfo" :space-evenly "false" :spacing 10
+      (image :class "pfp" :valign "start" :style `background-image: url("/home/aleslul/Imágenes/aleslul.jpeg");` )
+      (box :orientation "v" :space-around "true" :valign "center" :spacing 5
+        (label :class "welcometext" :text "󰣇 ${username}" :halign "start" :valign "center")
+        (label :text "${username}@${hostname}" :halign "center" :halign "start" :valign "start" :style "color: #F7768E")
+        (label :text "${uptime}" :halign "start" :valign "start" :halign "start" :style "color: #7AA2F7")
+      )
+    )
+    (box :class "infosystem" :orientation "h" :halign "center" :valign "center" :spacing 10
+      (box :class "cpu" :orientation "v" :halign "center" :valign "center" :spacing 0
+        (label :text " ")
+        (label :class "infolabel" :text "${cpu}")
+      )
+      (box :class "ram" :orientation "v" :halign "center" :valign "center" :spacing 0
+        (label :text " ")
+        (label :class "infolabel" :text "${ram}")
+      )
+      (box :class "disk" :orientation "v" :halign "center" :valign "center" :spacing 0
+        (label :text "󰋊")
+        (label :class "infolabel" :text "${disk}")
+      )
+    )
+  )
+)
+
+(defwidget middlecenter []
+  (box :class "middlecenter" :orientation "v" :valign "center" :halign "center" :spacing 5
+    (scalecenter :label ""
+        :value "${volume}"
+        :onchange "pamixer --set-volume {}")
+    (scalecenter :label ""
+        :value "${brightness}"
+        :onchange "brightnessctl set {}%")
+  )
+)
+
+(defwidget bottomcenter []
+  (box :class "bottomcenter" :orientation "v" :valign "center" :halign "center" :spacing 10 :space-evenly "false"  
+    (box :class "raper" :orientation "v" :valign "end" :halign "center" :spacing 10
+      (box :spacing 10 :orientation "h"
+        (button :class { networkstatus != "" ? "testenabled" : "test"} :onclick {networkstatus != "" ? "rfkill block wifi &" : "rfkill unblock wifi &"} "󰤨 ")
+        (button :class { bluetoothstatus != "no" ? "testenabled" : "test"}  :onclick {bluetoothstatus != "no" ? "bluetoothctl power off" : "bluetoothctl power on"}  "")
+        (button :class { nighttoggle != false ? "testenabled" : "test"} :onclick {nighttoggle != false ? "bash $HOME/.config/eww/scripts/sunset.sh & eww update nighttoggle=false" : "$HOME/.config/eww/scripts/sunset.sh & eww update nighttoggle=true"} " ")
+      )
+      (box :spacing 10 :orientation "h"
+        (button :class "test" :onclick "eww open actioncenter --toggle && hyprshot -m region &" "󰹑 ")
+        (button :class "test" :onclick "thunar ~ & eww open actioncenter --toggle &" " ")
+        (button :class "test" :onclick "cinnamon-settings &" "")
+      )
+      (box :spacing 10 :orientation "h"
+        (button :class "test" :onclick "steam ~ & eww open actioncenter --toggle &" "󰓓")
+        (button :class "test" :onclick "code ~ & eww open actioncenter --toggle &" "")
+        (button :class "test" :onclick "alacritty -e bash -c 'sudo pacman -Syu; exec bash' & eww open actioncenter --toggle &" " ")
+      )
+    )
+    (powermenu)
+  )
+)
+
+(defwidget powermenu [] 
+  (box :class "powerbuttons" :orientation "h" :halign "center" :valign "center" :space-evenly "true" 
+    (button 
+      :class "poweroff"
+      :onclick "poweroff &"
+      ""
+    )
+    (button 
+      :class "restart"
+      :onclick "reboot &"
+      ""
+    )
+    (button 
+      :class "lock"
+      :onclick "eww open actioncenter --toggle & hyprlock &"
+      ""
+    )
+    (button
+      :class "log_out"
+      :onclick "eww open actioncenter --toggle & exit &"  
+      "󰈆"
+    )
+  )
+)
+
+;; VOLUME BARS FOR ACTIONCENTER
+(defwidget scalecenter [label value onchange]
+  (box :orientation "h"
+        :class "scalecenter"
+        :space-evenly false
+    (box :class "label" label)
+    (scale :min 0
+            :max 101
+            :active {onchange != ""}
+            :value value
+            :onchange onchange)
+  )
+)
+
+(defwidget connectivity []
+  (box :class "connectivity"
+    :spacing 10
+    (button 
+      :class "bluetooth"
+      :onclick "rofi-bluetooth &"
+      ""
+    )
+    (button 
+      :class "wifi"
+      :onclick "rofi-bluetooth &"
+      {networkstatus != "" ? "󰤨" : "󰤭"}
+    )
+    (button 
+      :class "power"
+      :onclick "eww open actioncenter --toggle &"
+      ""
+    )
+  )
+)
+
+;;(defwidget topstuff []
+;;  (box :class "topstuff" :orientation "h" :space-evenly false
+;;    (launcher)
+;;  )
+;;)
+;;
+;;(defwidget sidestuff []
+;;  (box :class "sidestuff" :orientation "h" :space-evenly false :halign "end"
+;;    (meters)
+;;    (connectivity)
+;;    (time)
+;;  )
+;;)
+;;
+;;(defwidget launcher []
+;;  (button 
+;;    :class "launcher"
+;;    :onclick "killall rofi || rofi -config .config/rofi/qtile.rasi -show drun"
+;;    ""
+;;  )
+;;)
+
+(defwidget workspaces [array]
+  (box :class "workspaces"
+        :orientation "h"
+        :space-evenly false
+        :spacing 1
+        :halign "start"
+    (for entry in array
+      (button :onclick `swaymsg workspace "${entry.name}"`
+              :class {entry.focused ? "focused" : ""}
+              `${entry.name}`
+      )
+    )
+  )
+)
+
+(defwidget metric [label value onchange onclick]
+  (box :orientation "h" 
+        :class "metric"
+        :space-evenly false
+    (button :onclick onclick `${value}`)
+  )
+)
+
+
+

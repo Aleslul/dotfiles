@@ -1,0 +1,111 @@
+;; These are the variables I use in widgets, whenever you see a name you don't recognize, 
+;; it's probably one of these variables. Be careful changing their values ​​here, they are used in multiple widgets!
+
+
+(defpoll bluetoothstatus :interval "1s"
+  `bluetoothctl show | grep "Powered" | cut -c11-`
+)
+(defpoll temp :interval "5s"
+  "sensors | grep -A 0 'temp1' | cut -c16-17"
+)
+(defpoll temp-icon :interval "5s"
+  "scripts/infoSystem.sh --temp-icon"
+)
+(defpoll mscloop :interval "1.5s"
+  "playerctl loop"
+)
+(defpoll mscshuffle :interval "1.5s"
+  "playerctl shuffle"
+)
+(defpoll username :interval "100s"
+  "whoami"
+)
+(defpoll hostname :interval "100s"
+  "cat /etc/hostname"
+)
+(defpoll cpu :interval "2s"
+  "scripts/infoSystem.sh --cpu" 
+)
+(defpoll cpu-raw :interval "2s"
+  "scripts/infoSystem.sh --cpu-raw"
+)
+(defpoll ram :interval "2s"
+  "scripts/infoSystem.sh --ram" 
+)
+(defpoll disk :interval "2s"
+  "scripts/infoSystem.sh --disk"
+)
+(defpoll hours :interval "1s"
+  "date +%I"
+)
+(defpoll minutes :interval "1s"
+  "date +%M"
+)
+(defpoll pmoram :interval "1s"
+  "date +%p"
+)
+
+;; ATTENTION: IF YOUR SYSTEM IS IN ENGLISH CHANGE => grep: "yes" to grep: "yes"
+;; If you don't know when to change grep, run this in your terminal: nmcli -t -f active,ssid dev wifi
+;; The result should be (if your system is in English):
+;;    no: NetworkName
+;;    no: NetworkName
+;;    yes: YourNetworkAlreadyConnected
+;;    no: NetworkName
+
+(defpoll networkstatus :interval "2s"
+  `nmcli -t -f active,ssid dev wifi | grep "sí" | cut -c5-`
+)
+
+(defpoll uptime :interval "60s"
+  "uptime -p | cut -c3-")
+(defpoll hyprsunset :interval "30s"
+  "scripts/sunset.sh --isActive")
+(defpoll brightness :interval "5"
+  "brightnessctl -m echo 'text|jdbc' | sed -e 's/,/\ /g' | awk '{print $3/$5*100}'")
+
+;; WEATHER VARABLES 
+(defpoll iconWeather :interval "900s"
+  "scripts/get_weather.sh --icon"
+)
+(defpoll labelWeather :interval "900s"
+  "scripts/get_weather.sh --label"
+)
+(defpoll colorWeather :interval "900s"
+  "scripts/get_weather.sh --color"
+)
+
+;; MUSIC VARIABLES
+(defpoll musicartlink :interval "3s"
+  `scripts/coverart.sh`)
+(defpoll musicposition :interval "1s"
+  `playerctl metadata --format "{{ duration(position) }}"`)
+(defpoll musiclength :interval "10s"
+  `playerctl metadata --format "{{ duration(mpris:length)}}"`)
+(defpoll musicpositionpercentage :interval "1s"
+  `playerctl metadata --format "{{ position / (mpris:length / 100)  }}"`)
+(defpoll playingorpaused :interval "1s" 
+  `playerctl status`)
+(defpoll music :interval "1s"
+  "playerctl metadata --format '{{ title }} - {{ artist }}' || true")
+(defpoll musicshort :interval "1s"
+  `playerctl metadata --format '{{ title }}' | cut -c1-30`)
+(defpoll volume :interval "1s"
+  "scripts/getVol.sh")
+
+(defpoll mic_percent :interval "3s" 
+"amixer -D pulse sget Capture | grep 'Left:' | awk -F'[][]' '{ print $2 }' | tr -d '%'")
+
+(defvar ismusicopenornot false)
+(defvar bluetoggle false)
+(defvar nighttoggle false)
+(defpoll cafein :interval "1s"
+  "$HOME/.config/hypr/scripts/cafein state")
+
+(defvar notification ``)
+(defvar notificationreveal false)
+(defvar notifsliteral "")
+
+(defpoll monthname :interval "2s"
+  "date +%B"
+)
