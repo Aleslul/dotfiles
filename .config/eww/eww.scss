@@ -1,0 +1,636 @@
+@use "theme" as c;
+
+
+* {
+  all: unset; //Unsets everything so you can style everything from scratch
+  font-weight: 600;
+  font-family: "JetbrainsMono Nerd Font";
+}
+
+//Global Styles
+.bar {
+  background-color: c.$bg-main;
+  color: white;
+  padding: 0px 0px 0px 0px;
+}
+
+// Styles on classes (see eww.yuck for more information)
+.meters, .music, .connectivity{
+  background-color: c.$bg-alt;
+  border-radius: 50px;
+  padding: 0px 11px;
+  margin: 5px 0px;
+  min-height: 30px;
+  font-weight: 500;
+}
+
+.metric{
+  margin: 0px;
+  padding: 0px;
+}
+.metric label{
+  font-size: 14px;
+}
+
+.actioncenter{
+  border: solid 2px c.$bg-main;
+  background-color: c.$bg-main;
+  border-radius: 18px;
+  padding: 15px 10px 10px 10px;
+}
+
+.topcenter{
+  font-family: "JetBrainsMono Nerd Font";
+  font-weight: 600;
+}
+
+.infosystem {
+  background-color: c.$bg-alt2;
+  min-height: 50px;
+  min-width: 230px;
+  border-radius: 15px;
+  padding: 10px 22px;
+  margin: 5px 0px 0px 0px;
+}
+
+.middlecenter{
+  margin-top: 10px;
+  min-width: 230px;
+  border-radius: 15px;
+  padding: 15px;
+  background-color: c.$bg-alt2;
+}
+
+.bottomcenter{
+  min-width: 230px;
+  margin-top: 10px;
+  background-color: c.$bg-main;
+  border-radius: 15px;
+}
+
+.raper {
+  background-color: c.$bg-alt2;
+  min-width: 10px;
+  padding: 22px;
+  border-radius: 15px;
+}
+
+.musicart {
+  min-width: 80px;
+  min-height: 80px;
+  border-radius: 10px;
+  background-size: cover;
+  background-position: center;
+}
+
+.pfp {
+  margin-right: 13px;
+  margin-left: 10px;
+  min-width: 95px;
+  min-height: 95px;
+  border-radius: 10px;
+  background-size: cover;
+  background-position: center;
+}
+
+.musicartdesk {
+  min-width: 10px;
+  min-height: 10px;
+  border-radius: 20px;
+  background-size: cover;
+  background-repeat: repeat;
+  background-position: center;
+  border: 3px solid c.$border-alt;
+  padding: 0px;
+  padding-top: 0px;
+  margin: 0px 10px;
+  margin-bottom: 20px;
+}
+
+.scalecenter scale trough highlight,.scalestat scale trough highlight {
+  all: unset;
+  background-color: c.$green;
+  color: c.$green;
+  border-radius: 8px;
+}
+
+.scalecenter scale trough,.scalestat scale trough {
+  all: unset;
+  background-color: c.$border-alt;
+  border-radius: 50px;
+  min-height: 5px;
+  min-width: 225px;
+  margin-right: 5px;
+}
+.scalecenter label,.scalestat label{
+  font-size: 16px;
+  color: c.$yellow;
+  margin: 0px 20px 0px 0px;
+}
+
+.scalecenter scale trough,.scalestat scale trough {
+  min-width: 240px;
+}
+
+.cpu, .ram, .disk {
+  min-width: 80px;
+  min-height: 40px;
+  border-radius: 10px;
+  font-size: 20px;
+}
+
+.cpu {
+  color: c.$blue;
+}
+
+.ram {
+  color: c.$green;
+}
+
+.disk {
+  color: c.$red;
+}
+
+.infolabel{
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.test, .testenabled{
+  min-width: 80px;
+  min-height: 50px;
+  background-color: c.$bg-main;
+  border-radius: 20px;
+  font-size: 20px;
+  color: c.$green;
+  transition: 0.3s;
+}
+
+.test:hover{
+  background-color: c.$red;
+  color: c.$bg-main;
+}
+
+.testenabled{
+  background-color: c.$red;
+  color: c.$bg-main;
+}
+
+.testenabled:hover {
+  background-color: c.$bg-main;
+  color: c.$green;
+}
+
+.test:active, .testenabled:active{
+  background-color: c.$blue
+}
+
+.statbutton, .statbuttondis{
+  min-width: 10px;
+  min-height: 10px;
+  background-color: c.$bg-main;
+  border-radius: 20px;
+  font-size: 20px;
+  color: c.$content-main;
+  transition: 0.3s;
+}
+
+.musiccenter{
+  border-radius: 15px ;
+  border: 2px solid c.$bg-main;
+  background-color: c.$bg-main;
+  padding: 10px;
+  color: c.$white;
+
+}
+
+.desktopmusic{
+  border-radius: 10px ;
+  border: 2px solid c.$content-main;
+  background-color: c.$bg-main;
+  padding: 10px 10px 5px 10px;
+  color: c.$white;
+  padding: 10px;
+  padding-top: 40px;
+}
+
+.musiccontrols{
+  background-color: c.$bg-alt2;
+  min-width: 170px;
+  padding: 5px 20px;
+  margin: 3px 5px;
+  border-radius: 10px;
+}
+
+
+.musicbutton, .playbutton, .musicbutton2, .musicbutton2dis{
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 21px;
+  padding: 2px 10px;
+  border-radius: 12px;
+  transition: all 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.playbutton {
+  background-color: c.$purple;
+  border: 3px solid c.$purple;
+  color: c.$white;
+}
+
+.playbutton:hover {
+  background-color: c.$red-light;
+  border-color: c.$red-light;
+}
+.playbutton:active{
+  background-color: c.$ply-act;
+}
+
+.musicbutton:hover, .musicbutton2:hover, .musicbutton2dis:hover{
+  background-color: c.$bg-main;  
+}
+
+.musicbutton:active, .musicbutton2:active, .musicbutton2dis:active{
+  background-color: c.$msc-act;
+}
+
+.musicbutton2dis {
+  color: rgb(172, 172, 172);
+}
+
+.musictitle{
+  font-family: "JetBrainsMono Nerd Font";
+  margin-top: 5px;
+  font-size: 15px;
+  font-weight: 700;
+  color: c.$yellow
+}
+
+.musicscale scale trough highlight {
+  all: unset;
+  background-color: c.$blue;
+  color: c.$blue;
+  border-radius: 10px;
+  min-width: 0px;
+}
+
+.musicscale scale trough {
+  all: unset;
+  background-color: c.$purple;
+  border-radius: 50px;
+  min-height: 5px;
+  min-width: 155px;
+  margin: 0px 10px;
+}
+
+.musicscale label{
+  font-size: 10px;
+  font-weight: 500;
+  padding: 0px;
+  color: c.$green;
+}
+
+.musicart{
+  border: none;
+  background-image: unset;
+  margin-left: 5px;
+  padding: 20px;
+}
+
+.volumewidget{
+  margin-top: 0px;
+  min-width: 30px;
+  font-size: 20px;
+  padding: 5px;
+  border: none;
+  background-color: c.$bg-alt;
+  border-radius: 18px;
+}
+
+.brightwidget {
+  margin-top: 0px;
+  min-width: 30px;
+  font-size: 20px;
+  padding: 5px;
+  border: none;
+  background-color: c.$bg-alt;
+  border-radius: 18px;
+}
+
+.scales{
+  margin-top: 0px;
+  min-width: 30px;
+  font-size: 20px;
+  padding: 10px;
+  border: none;
+  background-color: c.$bg-alt2;
+  border-radius: 18px;
+}
+
+.summary{
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.calendar {
+  background: c.$bg-main;
+  font-size: 15px;
+  padding-top: 5px;
+  padding-bottom: 2px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border:2px solid c.$bg-main ;
+  border-radius: 15px;
+
+  &.view {
+    background-color: c.$bg-main;
+  }
+
+  &.button {
+    background: transparent;
+    border-radius: 20px;
+    color: c.$green;
+
+    &:disabled {
+      color: c.$blue;
+    }
+  }
+
+  &.header {
+    border: 0px;
+    background-color: c.$bg-alt2;
+    border-radius: 10px;
+    margin-top: 2px;
+  }
+
+  &.highlight {
+    color: c.$red;
+    padding: 5px;
+  }
+
+  &:selected {
+    color: c.$bg-main;
+    background: c.$blue-light;
+    border-radius: 5px;
+  }
+
+  &:indeterminate {
+    color: c.$purple-light;
+  }}
+
+.stats {
+  background-color: c.$bg-main;
+  margin: 0px;
+  padding: 0px;
+  border-radius: 10px;
+  border: 2px solid c.$content-main;
+}
+
+.activate-linux {
+  color: rgba(250, 250, 250, 0.5);
+
+  &.background {
+    background: none;
+  }
+}
+
+
+
+/*
+  POWER MENU BUTTONS STYLES
+*/
+
+.powerbuttons {
+  min-width: 305px;
+  min-height: 50px;
+  background-color: c.$bg-main;
+  border-radius: 15px;
+  font-size: 25px;
+}
+
+.poweroff, .restart, .lock, .log_out {
+  padding: 5px 7px 5px 3px;
+  font-size: 20px;
+  transition: 0.3s;
+}
+
+
+.powerbuttons .poweroff {
+  border-radius: 15px 0px 0px 15px;
+  background-color: c.$bg-alt;
+  color: c.$red;
+}
+
+.powerbuttons .poweroff:hover{
+  background-color: c.$red;
+  color: c.$bg-main;
+}
+
+.powerbuttons .restart {
+  background-color: c.$bg-alt;
+  color: c.$blue;
+}
+
+.powerbuttons .restart:hover{
+  background-color: c.$blue;
+  color: c.$bg-main;
+}
+
+.powerbuttons .lock {
+  background-color: c.$bg-alt;
+  color: c.$green;
+}
+
+.powerbuttons .lock:hover{
+  background-color: c.$green;
+  color: c.$bg-main;
+}
+
+.powerbuttons .log_out {
+  border-radius: 0px 15px 15px 0px;
+  background-color: c.$bg-alt;
+  font-size: 30px;
+  font-weight: 900;
+  color: c.$yellow;
+}
+
+.powerbuttons .log_out:hover{
+  background-color: c.$yellow;
+  color: c.$bg-main;
+}
+
+/* 
+  START PAGE STYLES
+*/
+// This is de "background" widget
+.backgroundcolor {
+  min-width: 1920px;
+  min-height: 1111px;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 18px;
+  padding: 10px;
+}
+
+// This is the "user" widget
+.startwrap {
+  padding: 7px;
+  background-color: c.$bg-main;
+  border-radius: 18px;
+}
+
+.startwelcome {
+  background-color: c.$bg-main;
+  border-radius: 13px;
+  padding: 12px;
+}
+
+.startwelcome .userinfo {
+  margin-bottom: 15px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.startwrap .raper {
+  padding: 0;
+  background-color: c.$bg-main;
+  margin-bottom: 10px;
+}
+
+.directories {
+  padding: 15px;
+  background-color: c.$bg-alt;
+  border-radius: 15px;
+}
+
+.buttonswraper {
+  padding: 5px;
+  background-color: c.$bg-alt;
+  border-radius: 15px;
+}
+
+.test2 {
+  font-size: 21px;
+  background-color: c.$bg-main;
+  color: c.$green;
+  border-radius: 10px;
+  padding: 10px 18px;
+  margin: 2px;
+}
+
+.test3 {
+  font-size: 21px;
+  background-color: c.$bg-main;
+  color: c.$green;
+  border-radius: 10px;
+  padding: 10px 22px 10px 14px;
+  margin: 2px;
+}
+
+.test2:hover, .test3:hover {
+  transition: 0.3s;
+  background-color: c.$red;
+  color: c.$bg-main;
+}
+
+.dirs {
+  font-size: 17px;
+}
+
+.dirs:hover {
+  color: c.$green;
+  transition: 0.3s;
+}
+
+.cpuGraph {
+  background-color: c.$bg-alt;
+  color: c.$blue;
+}
+
+.cpuGraph .iconGraph {
+  min-width: 40px;
+  padding-right: 15px;
+  font-size: 30px;
+}
+
+.tempGraph {
+  background-color: c.$bg-alt;
+  color: c.$red;
+}
+
+.tempGraph .iconGraph {
+  font-size: 30px;
+}
+
+//This is te "scroll" widget
+.scroll {
+  background-color: c.$bg-main;
+  border-radius: 13px;
+  padding: 10px;
+}
+
+.startwrap .powerbuttons button{
+  min-width: 78px;
+  padding: 5px;
+}
+
+.launcher {
+  background-color: c.$bg-main;
+  border-radius: 18px;
+  padding: 50px;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: 700;
+  color: c.$white;
+}
+
+.eventScrollLabel:hover {
+  transition: 0.5s;
+  border-bottom: 2px solid c.$white
+}
+
+.scrollButtonWrap {
+  font-size: 14px;
+  min-width: 580px;
+  background-color: c.$bg-main;
+  padding: 10px 0px;
+}
+.scrollButton {
+  background-color: c.$bg-main;
+  padding: 5px 0px;
+  border-bottom: 2px solid c.$red;
+  color: c.$yellow;
+}
+
+.scrollButton:hover {
+  transition: 0.3s;
+  border-bottom: 2px solid c.$green;
+}
+
+//This is the "bar" widget
+.initialbar {
+  background-color: c.$bg-main;
+  border-radius: 18px;
+  padding: 3px 15px;
+}
+
+.logoutBar {
+  border-radius: 13px;
+  color: c.$red;
+  font-size: 27px;
+  margin-right: 10px;
+}
+
+.logoutBar:hover {
+  transition: 0.3s;
+  color: c.$blue;
+}
+
+.hour {
+  color: c.$yellow;
+  border-radius: 13px;
+  font-size: 15px;
+  padding: 7px 12px;
+  background-color: c.$bg-alt;
+}

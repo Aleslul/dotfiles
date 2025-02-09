@@ -1,0 +1,28 @@
+
+
+(include "./widgets/start_page.yuck")
+(include "./widgets/music_center.yuck")
+(include "./widgets/barwidget.yuck")
+(include "./widgets/desktop.yuck")
+(include "./widgets/calendar.yuck")
+(include "./widgets/variables.yuck")
+(include "./widgets/actioncenter.yuck")
+(include "./widgets/notification_widget.yuck")
+
+
+(defwidget activate-linux []
+  (box
+    :orientation "v"
+    :halign "start"
+    :valign "start"
+    (label :xalign 0 :markup "<span font_size=\"large\">Activate Linux</span>")
+    (label :xalign 0 :text "Go to Settings to activate Linux")
+  )
+)
+
+(defwindow activate-linux
+  :monitor 0
+  :stacking "fg"
+  :geometry (geometry :x "8px" :y "32px" :width "285px" :anchor "bottom right")
+  (activate-linux)
+)
