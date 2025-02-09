@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [ $# -eq 0 ]; then
-	echo "Usage: $0 --title | --arturl | --artist | --length | --album | --source | --status"
+	echo "Usage: $0 --title | --arturl | --artist | --length | --album | --source | --status | --shape"
 	exit 1
 fi
 
@@ -78,7 +78,6 @@ case "$1" in
         echo "0m:00s"
     fi
     ;;
-
 --status)
     status=$(playerctl -p "$active_player" status 2>/dev/null)
     if [[ $status == "Playing" ]]; then
@@ -92,7 +91,7 @@ case "$1" in
 --album)
     album=$(get_metadata "xesam:album")
     if [ -n "$album" ]; then
-        echo "${album:0:20}"
+        echo "$album"
     else
         echo "Not album"
     fi
@@ -101,16 +100,35 @@ case "$1" in
     if [[ "$active_player" == *"spotify"* ]]; then
         echo "Spotify "
     elif [[ "$active_player" == *"firefox"* ]]; then
-        echo "Firefox 󰈹"
+        echo "Zen Browser "
     elif [[ "$active_player" == *"chromium"* ]]; then
         echo "Chrome "
     else
         echo ""
     fi
     ;;
+--shape)
+    # Si no hay un reproductor activo, asegúrate de que active_player sea vacío
+    if [[ -z "$active_player" ]]; then
+        echo "1, 1" # Tamaño mínimo si no hay reproducción activa
+    else
+        # Verifica el reproductor activo y devuelve tamaños específicos
+        case "$active_player" in
+            spotify)
+                echo "450, 100" # Tamaño para Spotify
+                ;;
+            firefox)
+                echo "500, 100" # Tamaño para Firefox
+                ;;
+            *)
+                echo "500, 100" # Tamaño predeterminado para otros reproductores
+                ;;
+        esac
+    fi
+    ;;
 *)
     echo "Invalid option: $1"
-    echo "Usage: $0 --title | --arturl | --artist | --length | --album | --source | --status"
+    echo "Usage: $0 --title | --arturl | --artist | --length | --album | --source | --status | --shape"
     exit 1
     ;;
 esac
