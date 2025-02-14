@@ -1,0 +1,210 @@
+{
+    "layer": "top",
+    "width": 1800,
+    "margin-top": 10,
+    "margin-bottom": 0,
+    "gtk-layer-shell": true,
+    "exclusive": true,
+
+    // MODULES IN USE:
+	"modules-left": ["custom/power", "clock", "bluetooth", "network"], 
+	"modules-center": ["hyprland/workspaces"],
+	"modules-right": ["hyprland/window", "pulseaudio", "backlight", "battery", "hyprland/language", "custom/swaync"],
+
+    // MODULES CONFIGURATION:
+	"pulseaudio": {
+		"tooltip": false,
+		"scroll-step": 5,
+		"format": "{icon} {volume}%",
+		"format-muted": "{icon} {volume}%",
+		"on-click-right":"pactl set-sink-mute @DEFAULT_SINK@ toggle",
+        "on-click": "eww open musiccenter --toggle --no-daemonize &",
+        
+		"format-icons": {
+			"default": [
+                "<span color='#7aa2f7'> </span>", 
+                "<span color='#7aa2f7'> </span>", 
+                "<span color='#7aa2f7'> </span>"
+            ]
+		}
+	},
+
+    "bluetooth": {
+        "format": "<span size='13000'></span>",
+        "format-connected": "<span size='13000'>󰂱</span> <span size='11100'>{device_alias}</span>",
+        "format-connected-battery": "<span size='13000'>󰂱</span> <span size='11100'>{device_battery_percentage}%</span>",
+        "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
+        "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
+        "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+        "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%",
+        "on-click": "blueman-manager"
+    },
+
+	"hyprland/window": {
+		"format": "{class}",
+        "max-length": 20,
+        "tooltip": true,
+		"separate-outputs": false,
+        "empty-class": "no-window" 
+	},
+
+    "custom/swaync": {
+        "tooltip": false,
+        "format": "<span color='#e0af68'></span> {icon} ",
+        "format-icons": {
+            "notification": "<span foreground='#F7768e'><sup></sup></span>",
+            "none": "",
+            "dnd-notification": "<span foreground='#F7768e'><sup></sup></span>",
+            "dnd-none": "",
+            "inhibited-notification": "<span foreground='#F7768e'><sup></sup></span>",
+            "inhibited-none": "",
+            "dnd-inhibited-notification": "<span foreground='#F7768e'><sup></sup></span>",
+            "dnd-inhibited-none": ""
+        },
+        "return-type": "json",
+        "exec-if": "which swaync-client",
+        "exec": "swaync-client -swb",
+        "on-click": "swaync-client -t -sw",
+        "on-click-right": "swaync-client -d -sw",
+        "escape": true
+    },
+
+
+    "hyprland/workspaces": {
+	    "disable-scroll": true,
+        "on-click": "activate",
+        "all-outputs": true,
+        "active-only": false,
+        "persistent-workspaces": {
+            "1": [],
+            "2": [],
+            "3": [],
+            "4": [],
+            "5": [],
+            "6": [],
+            "7": [],
+            "8": [],
+            "9": [],
+            "10": []
+        },
+        "format": "{icon}",
+        "format-icons": {
+            "active": "<span> </span>",
+            "empty": "<span></span>",
+            "persistent": "<span font='12'></span>"
+        }
+    },
+
+    "network": {
+		"tooltip": true,
+        "tooltip-format": "{icon} <span></span> {bandwidthDownBits}",
+		"format-wifi": "<span color='#9ece6a'>{icon} </span> {essid}",
+		"format-ethernet": "󰈀",
+        "format-disconnected": "󰌙",
+		"interval": 5,
+		"on-click": "eww open actioncenter --toggle --no-daemonize & eww close calendar",
+        "on-click-right": "cinnamon-settings network & eww close volumewidget calendar",
+        "format-icons": [
+            "󰤯", "󰤟", "󰤢", "󰤢", "󰤨"
+        ]
+	},
+
+    "backlight": {
+		"tooltip": false,
+		"format": "<span color = '#e0af68'> 󰌵 </span>{}%",
+		"interval":1,
+		"on-scroll-up": "brightnessctl set +15%",
+		"on-scroll-down": "brightnessctl set 15%-",
+        "on-click": "eww open actioncenter --toggle --no-daemonize & eww close volumewidget calendar"
+        
+	},
+
+    "battery": {
+        "tooltip": false,
+        "states": {
+            "good": 95,
+            "warning": 30,
+            "critical": 10
+        },
+        "format": "{icon}  <span color='#F1F1F1'>{capacity}%</span>",
+        "format-charging": "<span color='#9ece6a'></span> <span color='#F1F1F1'>{capacity}%</span>",
+        "format-plugged": " <span color='#F1F1F1'>{capacity}</span>%",
+        "format-alt": "<span color='#F1F1F1'>{time}</span> {icon}",
+        "format-icons": [
+            "<span color='#f7768e'></span>", 
+            "<span color='#e0af68'></span>", 
+            "<span color='#e0af68'></span>", 
+            "<span color='#9ece6a'></span>", 
+            "<span color='#9ece6a'></span>"
+        ]
+    },
+
+    "clock": {
+        "tooltip":false,
+        "interval": 1,
+        "format": "{:%H:%M %p}",
+	    "timezone": "America/Lima",
+        "on-click": "eww open calendar --toggle --no-daemonize & eww close volumewidget actioncenter"
+    },
+
+    "memory": {
+        "interval": 30,
+        "format": "<span color='#9ece6a'>  </span> {used}gb ",
+        "max-length": 15
+    },
+
+    "hyprland/language":{
+        "format": " {} ",
+	        "format-en": "English",
+	        "format-es": "Español"
+    },
+
+    "custom/power": {
+        "tooltip":false,
+        "format": "<span>󰮫</span>",
+        "on-click": "eww open actioncenter --toggle --no-daemonize & eww close volumewidget calendar"
+    },
+
+
+    "custom/updates":{
+        "format": "{} Update(s)",
+        "exec": "checkupdates | wc -l",
+        "exec-if": "[[ $(checkupdates | wc -l) != 0 ]]",
+        "interval": 15,
+        "on-click": "kitty -e paru -Syu && notify-send 'The system has been updated' "
+    },
+
+    // UNUSED MODULES
+
+    "cpu": {
+    "interval": 15,
+    "format": "<span color='#f7768e'> </span> {}%",
+    "max-length": 10
+    },
+
+    "disk": {
+    "format": "<span color='#e0af68'> </span> {used}",
+    "interval": 1
+    },
+
+    "custom/media": {
+        "interval": 10,
+        "format": "{icon} {}",
+        "return-type": "json",
+        "max-length": 20,
+        "format-icons": {
+            "spotify": " ",
+            "default": " "
+        },
+        "escape": true,
+        "exec": "$HOME/.config/system_scripts/mediaplayer.py 2> /dev/null",
+        "on-click": "playerctl play-pause"
+    },
+
+    "tray": {
+        "icon-size": 18,
+        "spacing": 8
+    }
+    
+}
+

@@ -1,0 +1,28 @@
+/* 
+COLORS FOR WAYBAR 
+
+I use the same colors for all rice :D
+*/
+
+
+:root {
+    --bg-main: #1A1B26;
+    --bg-alt: #222330;
+
+    --white: #F1F1F1;
+
+    --purple: #583794;
+    --purple-alt: #4c2f7c;
+
+    --red: #F7768E;
+    --red-alt: #d26478;
+
+    --blue: #7AA2F7;
+    --blue-alt: #6d92e1;
+
+    --green: #9ECE6A;
+    --green-alt: #8ebc5e;
+
+    --yellow: #E0AF68;
+    --yellow-alt: #d19e5a;
+}
